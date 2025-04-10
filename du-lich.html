@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá các hoạt động du lịch hấp dẫn tại đảo Hòn Khoai - Viên ngọc xanh của vùng biển Cà Mau">
+    <title>Du lịch Hòn Khoai - Trải nghiệm độc đáo tại vùng biển Cà Mau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1e40af',
+              secondary: '#1e3a8a',
+              accent: '#f59e0b',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
+          <h1 class="text-2xl font-bold text-primary">Đảo Hòn Khoai</h1>
+        </div>
+        <nav class="hidden md:block">
+          <ul class="flex space-x-8">
+            <li><a href="index.html" class="text-gray-800 hover:text-accent font-medium">Trang chủ</a></li>
+            <li><a href="canh-quan.html" class="text-gray-800 hover:text-accent font-medium">Cảnh quan</a></li>
+            <li><a href="du-lich.html" class="text-gray-800 hover:text-accent font-medium font-bold text-accent">Du lịch</a></li>
+            <li><a href="#hoat-dong" class="text-gray-800 hover:text-accent font-medium">Hoạt động</a></li>
+            <li><a href="#dich-vu" class="text-gray-800 hover:text-accent font-medium">Dịch vụ</a></li>
+            <li><a href="#lien-he" class="text-gray-800 hover:text-accent font-medium">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <button class="md:hidden text-gray-800">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Du lịch Hòn Khoai" class="absolute inset-0 w-full h-full object-cover"> 
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Du lịch Hòn Khoai</h1>
+        <p class="text-xl md:text-2xl text-white mb-8">Trải nghiệm độc đáo tại viên ngọc xanh của vùng biển Cà Mau</p>
+        <a href="#hoat-dong" class="bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+          Khám phá ngay
+        </a>
+      </div>
+    </section>
+  
+    <!-- Hoạt động Section -->
+    <section id="hoat-dong" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Hoạt động du lịch</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Hòn Khoai mang đến cho du khách nhiều trải nghiệm thú vị và độc đáo, từ khám phá thiên nhiên đến tìm hiểu văn hóa địa phương.
+          </p>
+        </div>
+  
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Trekking khám phá rừng" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Trekking khám phá rừng</h3>
+              <p class="text-gray-600 mb-4">
+                Du khách có thể tham gia các tour trekking xuyên rừng để khám phá hệ sinh thái đa dạng của đảo Hòn Khoai, tìm hiểu về các loài thực vật và động vật quý hiếm.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Lặn ngắm san hô" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Lặn ngắm san hô</h3>
+              <p class="text-gray-600 mb-4">
+                Vùng biển xung quanh đảo Hòn Khoai có hệ sinh thái san hô phong phú, là điểm lý tưởng cho các hoạt động lặn biển và khám phá đại dương.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1517960413843-0aee8e2b3285?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Câu cá cùng ngư dân" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Câu cá cùng ngư dân</h3>
+              <p class="text-gray-600 mb-4">
+                Du khách có thể tham gia các hoạt động câu cá cùng ngư dân địa phương, trải nghiệm cuộc sống của người dân trên đảo và thưởng thức hải sản tươi ngon.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Ngắm bình minh và hoàng hôn" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Ngắm bình minh và hoàng hôn</h3>
+              <p class="text-gray-600 mb-4">
+                Đứng từ đỉnh cao nhất của đảo Hòn Khoai, du khách có thể chiêm ngưỡng cảnh bình minh và hoàng hôn tuyệt đẹp trên biển, một trải nghiệm khó quên.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Thưởng thức hải sản" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Thưởng thức hải sản</h3>
+              <p class="text-gray-600 mb-4">
+                Hòn Khoai là nơi có nhiều loại hải sản tươi ngon, du khách có thể thưởng thức các món ăn đặc sản được chế biến từ nguyên liệu tươi sống đánh bắt ngay tại vùng biển này.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Chèo thuyền kayak" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-primary mb-3">Chèo thuyền kayak</h3>
+              <p class="text-gray-600 mb-4">
+                Khám phá vẻ đẹp của vùng biển Hòn Khoai bằng thuyền kayak, len lỏi qua những vùng nước trong xanh và khám phá những góc khuất của đảo.
+              </p>
+              <a href="#" class="text-primary hover:text-accent font-medium inline-flex items-center">
+                Chi tiết <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="#" class="inline-block bg-primary hover:bg-secondary text-white font-medium py-3 px-8 rounded-full transition duration-300">
+            Xem thêm hoạt động <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dịch vụ Section -->
+    <section id="dich-vu" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Dịch vụ du lịch</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Chúng tôi cung cấp đa dạng các dịch vụ du lịch chất lượng cao tại đảo Hòn Khoai
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white rounded-xl p-8 shadow-md">
+            <div class="flex items-start">
+              <div class="bg-primary rounded-full p-3 mr-4">
+                <i class="fas fa-ship text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-primary mb-3">Tour tham quan đảo</h3>
+                <p class="text-gray-600 mb-4">
+                  Chúng tôi cung cấp các tour tham quan đảo Hòn Khoai với nhiều lựa chọn khác nhau, từ tour ngắn ngày đến tour dài ngày, phù hợp với nhu cầu của mọi du khách.
+                </p>
+                <ul class="text-gray-600 space-y-2">
+                  <li><i class="fas fa-check text-accent mr-2"></i> Tour 1 ngày khám phá đảo</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Tour 2 ngày 1 đêm trải nghiệm đảo</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Tour 3 ngày 2 đêm khám phá toàn diện</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-md">
+            <div class="flex items-start">
+              <div class="bg-primary rounded-full p-3 mr-4">
+                <i class="fas fa-bed text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-primary mb-3">Lưu trú</h3>
+                <p class="text-gray-600 mb-4">
+                  Đa dạng các lựa chọn lưu trú từ homestay đến khách sạn, đáp ứng nhu cầu của mọi du khách với mức giá phù hợp.
+                </p>
+                <ul class="text-gray-600 space-y-2">
+                  <li><i class="fas fa-check text-accent mr-2"></i> Homestay gần gũi với thiên nhiên</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Khách sạn tiện nghi đầy đủ</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Khu cắm trại dành cho người ưa mạo hiểm</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-md">
+            <div class="flex items-start">
+              <div class="bg-primary rounded-full p-3 mr-4">
+                <i class="fas fa-utensils text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-primary mb-3">Ẩm thực</h3>
+                <p class="text-gray-600 mb-4">
+                  Thưởng thức ẩm thực đặc sắc của vùng biển Cà Mau với các món hải sản tươi ngon được chế biến theo phong cách địa phương.
+                </p>
+                <ul class="text-gray-600 space-y-2">
+                  <li><i class="fas fa-check text-accent mr-2"></i> Hải sản tươi sống</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Đặc sản địa phương</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Tiệc BBQ trên bãi biển</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-md">
+            <div class="flex items-start">
+              <div class="bg-primary rounded-full p-3 mr-4">
+                <i class="fas fa-hiking text-white text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-primary mb-3">Hoạt động giải trí</h3>
+                <p class="text-gray-600 mb-4">
+                  Đa dạng các hoạt động giải trí từ thể thao biển đến khám phá thiên nhiên, mang đến cho du khách những trải nghiệm khó quên.
+                </p>
+                <ul class="text-gray-600 space-y-2">
+                  <li><i class="fas fa-check text-accent mr-2"></i> Thể thao biển (lặn, bơi, chèo thuyền)</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Trekking khám phá rừng</li>
+                  <li><i class="fas fa-check text-accent mr-2"></i> Câu cá cùng ngư dân</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Liên hệ Section -->
+    <section id="lien-he" class="py-20 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Liên hệ & Đặt tour</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Gửi thông tin để được tư vấn và đặt tour du lịch Hòn Khoai
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl p-8 shadow-md text-center">
+          <p class="text-gray-600 text-lg mb-8">Bấm vào nút phía dưới để vào trang biểu mẫu</p>
+          <a href="form.html" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+            Bấm vào đây <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+          
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <i class="fas fa-map-marker-alt text-2xl text-primary mb-4"></i>
+            <h3 class="text-lg font-bold mb-2">Địa chỉ</h3>
+            <p>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</p>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-phone text-2xl text-primary mb-4"></i>
+            <h3 class="text-lg font-bold mb-2">Điện thoại</h3>
+            <p>0xxx.xxx.xxx</p>
+          </div>
+          <div class="text-center">
+            <i class="fas fa-envelope text-2xl text-primary mb-4"></i>
+            <h3 class="text-lg font-bold mb-2">Email</h3>
+            <p>info@honkhoai.vn</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Đảo Hòn Khoai</h3>
+            <p class="mb-4">Viên ngọc xanh của vùng biển Cà Mau</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-tiktok"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Liên kết nhanh</h3>
+            <ul class="space-y-2">
+              <li><a href="index.html" class="hover:text-accent">Trang chủ</a></li>
+              <li><a href="canh-quan.html" class="hover:text-accent">Cảnh quan</a></li>
+              <li><a href="#hoat-dong" class="hover:text-accent">Hoạt động du lịch</a></li>
+              <li><a href="#dich-vu" class="hover:text-accent">Dịch vụ</a></li>
+              <li><a href="#lien-he" class="hover:text-accent">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-phone mt-1 mr-2"></i>
+                <span>0xxx.xxx.xxx</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-envelope mt-1 mr-2"></i>
+                <span>info@honkhoai.vn</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+          <p>&copy; 2023 Đảo Hòn Khoai. Tất cả các quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

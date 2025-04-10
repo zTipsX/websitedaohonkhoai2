@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tâm sự đôi dòng về bản thân - Đảo Hòn Khoai">
+    <title>Tâm sự đôi dòng về bản thân - Đảo Hòn Khoai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1e40af',
+              secondary: '#1e3a8a',
+              accent: '#f59e0b',
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
+          <h1 class="text-2xl font-bold text-primary">Đảo Hòn Khoai</h1>
+        </div>
+        <nav class="hidden md:block">
+          <ul class="flex space-x-8">
+            <li><a href="index.html" class="text-gray-800 hover:text-accent font-medium">Trang chủ</a></li>
+            <li><a href="canh-quan.html" class="text-gray-800 hover:text-accent font-medium">Cảnh quan</a></li>
+            <li><a href="du-lich.html" class="text-gray-800 hover:text-accent font-medium">Du lịch</a></li>
+            <li><a href="#hoat-dong" class="text-gray-800 hover:text-accent font-medium">Hoạt động</a></li>
+            <li><a href="#dich-vu" class="text-gray-800 hover:text-accent font-medium">Dịch vụ</a></li>
+            <li><a href="#lien-he" class="text-gray-800 hover:text-accent font-medium">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <button class="md:hidden text-gray-800">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!-- Form Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-16">
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">TÂM SỰ ĐÔI DÒNG VỀ BẢN THÂN</h1>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Chia sẻ một chút về bản thân để chúng ta hiểu nhau hơn
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl p-8 shadow-md">
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ten" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten" type="text" value="Nguyễn Hồng Ngọc" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns" type="text" value="10/03/2007" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="gt" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt-nam" type="radio" value="Nam" name="gender" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt-nu" type="radio" value="Nữ" name="gender" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color" value="Hồng" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport-6">Khác</label>
+                      </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                      <img src="https://tse1.mm.bing.net/th?id=OIP.1OO8k44ORXmrJr3yo5OkRAHaEk&pid=Api&P=0&h=220" height="90" width="auto" class="rounded-lg shadow-md">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject" value="Tiếng Anh" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea name="phuongcham" id="pcs" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Sống tích cực</textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Đảo Hòn Khoai</h3>
+            <p class="mb-4">Viên ngọc xanh của vùng biển Cà Mau</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-youtube"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-tiktok"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Liên kết nhanh</h3>
+            <ul class="space-y-2">
+              <li><a href="index.html" class="hover:text-accent">Quay lại trang chủ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
+            <ul class="space-y-2">
+              <li class="flex items-start">
+                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-phone mt-1 mr-2"></i>
+                <span>0xxx.xxx.xxx</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-envelope mt-1 mr-2"></i>
+                <span>info@honkhoai.vn</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-blue-800 mt-8 pt-8 text-center">
+          <p>&copy; 2023 Đảo Hòn Khoai. Tất cả quyền được bảo lưu.</p>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

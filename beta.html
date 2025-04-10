@@ -1,0 +1,342 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đảo Hòn Khoai - Kỳ quan thiên nhiên Cà Mau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1e40af',
+              secondary: '#1e3a8a',
+              accent: '#f59e0b',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
+          <h1 class="text-2xl font-bold text-primary">Hòn Khoai Travel</h1>
+        </div>
+        <nav class="hidden md:block">
+          <ul class="flex space-x-8">
+            <li><a href="#home" class="text-gray-800 hover:text-accent font-medium">Trang chủ</a></li>
+            <li><a href="#about" class="text-gray-800 hover:text-accent font-medium">Giới thiệu</a></li>
+            <li><a href="#scenery" class="text-gray-800 hover:text-accent font-medium">Cảnh quan</a></li>
+            <li><a href="#history" class="text-gray-800 hover:text-accent font-medium">Lịch sử</a></li>
+            <li><a href="#tourism" class="text-gray-800 hover:text-accent font-medium">Du lịch</a></li>
+            <li><a href="#gallery" class="text-gray-800 hover:text-accent font-medium">Thư viện ảnh</a></li>
+            <li><a href="#contact" class="text-gray-800 hover:text-accent font-medium">Liên hệ</a></li>
+          </ul>
+        </nav>
+        <button class="md:hidden text-gray-800">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2073&amp;q=80" alt="Hòn Khoai" class="absolute inset-0 w-full h-full object-cover">
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Đảo Hòn Khoai</h1>
+        <p class="text-xl md:text-2xl text-white mb-8">Kỳ quan thiên nhiên hùng vĩ của vùng đất Cà Mau</p>
+        <a href="#about" class="bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+          Khám phá ngay
+        </a>
+      </div>
+    </section>
+  
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Giới thiệu về Hòn Khoai</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Hòn Khoai là một quần đảo nhỏ nằm ở phía Tây Nam của tỉnh Cà Mau, cách đất liền khoảng 14,6 km. 
+            Nơi đây được mệnh danh là "viên ngọc xanh" của vùng đất Mũi với hệ sinh thái đa dạng và cảnh quan thiên nhiên tuyệt đẹp.
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 rounded-xl p-8 mb-12 shadow-md">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+              <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Tổng quan Hòn Khoai" class="w-full h-64 object-cover rounded-lg">
+            </div>
+            <div class="md:w-1/2">
+              <h3 class="text-2xl font-bold text-primary mb-4">Tổng quan về Hòn Khoai</h3>
+              <p class="text-gray-600 mb-4">
+                Hòn Khoai là quần đảo gồm 5 đảo nhỏ, trong đó đảo lớn nhất cũng mang tên Hòn Khoai. 
+                Đảo có diện tích khoảng 4km², nổi tiếng với bãi biển đẹp, rừng nguyên sinh và ngọn hải đăng cổ.
+              </p>
+              <p class="text-gray-600 mb-6">
+                Khí hậu trên đảo mát mẻ quanh năm, nhiệt độ trung bình 26-27°C. 
+                Thời điểm lý tưởng để tham quan là từ tháng 11 đến tháng 4 năm sau.
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Scenery Section -->
+    <section id="scenery" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Cảnh quan Hòn Khoai</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Hòn Khoai sở hữu vẻ đẹp hoang sơ với hệ sinh thái rừng ngập mặn đa dạng, bãi biển cát trắng và hệ thống động thực vật phong phú.
+          </p>
+        </div>
+  
+        <div class="bg-white rounded-xl p-8 mb-12 shadow-md">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Cảnh quan Hòn Khoai" class="w-full h-64 object-cover rounded-lg">
+            </div>
+            <div class="md:w-1/2">
+              <h3 class="text-2xl font-bold text-primary mb-4">Thiên nhiên kỳ thú</h3>
+              <p class="text-gray-600 mb-4">
+                Hòn Khoai có hệ sinh thái rừng nhiệt đới với nhiều loài gỗ quý như sao, dầu, cùng hệ động vật phong phú như khỉ đuôi dài, kỳ đà, nhiều loài chim quý.
+              </p>
+              <p class="text-gray-600 mb-6">
+                Bãi biển Hòn Khoai với cát trắng mịn, nước biển trong xanh là điểm đến lý tưởng để nghỉ ngơi, tắm biển và ngắm hoàng hôn tuyệt đẹp.
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- History Section -->
+    <section id="history" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Lịch sử Hòn Khoai</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Hòn Khoai không chỉ có cảnh quan đẹp mà còn gắn liền với những dấu mốc lịch sử quan trọng của vùng đất cực Nam Tổ quốc.
+          </p>
+        </div>
+  
+        <div class="bg-gray-50 rounded-xl p-8 mb-12 shadow-md">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+              <img src="https://images.unsplash.com/photo-1493787039806-2edcbe808750?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Lịch sử Hòn Khoai" class="w-full h-64 object-cover rounded-lg">
+            </div>
+            <div class="md:w-1/2">
+              <h3 class="text-2xl font-bold text-primary mb-4">Di tích lịch sử</h3>
+              <p class="text-gray-600 mb-4">
+                Hòn Khoai từng là căn cứ cách mạng quan trọng trong kháng chiến chống Pháp và Mỹ. Nơi đây gắn liền với chiến thắng Hòn Khoai lừng lẫy năm 1940.
+              </p>
+              <p class="text-gray-600 mb-6">
+                Ngọn hải đăng Hòn Khoai được xây dựng từ năm 1920, cao 318m so với mực nước biển, là một trong những ngọn hải đăng cổ nhất Việt Nam còn hoạt động.
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Tourism Section -->
+    <section id="tourism" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Du lịch Hòn Khoai</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Hòn Khoai ngày càng trở thành điểm đến hấp dẫn với những trải nghiệm độc đáo dành cho du khách yêu thiên nhiên và khám phá.
+          </p>
+        </div>
+  
+        <div class="bg-white rounded-xl p-8 mb-12 shadow-md">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
+              <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Du lịch Hòn Khoai" class="w-full h-64 object-cover rounded-lg">
+            </div>
+            <div class="md:w-1/2">
+              <h3 class="text-2xl font-bold text-primary mb-4">Trải nghiệm du lịch</h3>
+              <p class="text-gray-600 mb-4">
+                Du khách có thể tham quan ngọn hải đăng cổ, leo núi ngắm toàn cảnh đảo, tắm biển, cắm trại qua đêm và khám phá hệ sinh thái rừng nhiệt đới độc đáo.
+              </p>
+              <p class="text-gray-600 mb-6">
+                Đặc sản địa phương gồm hải sản tươi sống như tôm, cua, mực, cùng các món ăn dân dã mang đậm hương vị miền Tây Nam Bộ.
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Thư viện ảnh</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Chiêm ngưỡng vẻ đẹp của Hòn Khoai qua những hình ảnh đẹp nhất
+          </p>
+        </div>
+  
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Bãi biển Hòn Khoai</h3>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Rừng nguyên sinh</h3>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1493787039806-2edcbe808750?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Hải đăng cổ</h3>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Hoàng hôn trên đảo</h3>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Động thực vật</h3>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80" alt="Hòn Khoai" class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+              <h3 class="text-white text-xl font-bold">Phong cảnh thiên nhiên</h3>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="#" class="inline-block bg-primary hover:bg-secondary text-white font-medium py-3 px-8 rounded-full transition duration-300">
+            Xem thêm ảnh <i class="fas fa-images ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Liên hệ với chúng tôi</h2>
+          <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
+          <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+            Gửi thông tin để được tư vấn và đặt tour du lịch Hòn Khoai
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-xl p-8 shadow-md">
+          <form>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Họ và tên</label>
+                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="phone" class="block text-gray-700 font-medium mb-2">Số điện thoại</label>
+                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="date" class="block text-gray-700 font-medium mb-2">Ngày dự kiến đi</label>
+                <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div class="md:col-span-2">
+                <label for="message" class="block text-gray-700 font-medium mb-2">Nội dung</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
+              </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+              <button type="submit" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                Gửi thông tin <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Hòn Khoai Travel</h3>
+            <p class="mb-4">Đưa bạn đến với kỳ quan thiên nhiên tuyệt đẹp của vùng đất cực Nam Tổ quốc.</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Liên kết nhanh</h3>
+            <ul class="space-y-2">
+              <li><a href="#home" class="hover:text-accent">Trang chủ</a></li>
+              <li><a href="#about" class="hover:text-accent">Giới thiệu</a></li>
+              <li><a href="#scenery" class="hover:text-accent">Cảnh quan</a></li>
+              <li><a href="#history" class="hover:text-accent">Lịch sử</a></li>
+              <li><a href="#tourism" class="hover:text-accent">Du lịch</a></li>
+              <li><a href="#gallery" class="hover:text-accent">Thư viện ảnh</a></li>
+              <li><a href="#contact" class="hover:text-accent">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+            <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Đảo Hòn Khoai, Ngọc Hiển, Cà Mau</p>
+            <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i> 0290 123 4567</p>
+            <p class="mb-2"><i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4b22252d240b23242520232a223f392a3d2e2765282426">[email&#160;protected]</a></p>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p>© 2023 Hòn Khoai Travel. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      // Mobile menu toggle
+      document.querySelector('header button').addEventListener('click', function() {
+        const nav = document.querySelector('header nav');
+        nav.classList.toggle('hidden');
+        nav.classList.toggle('block');
+      });
+    </script>
+  
+  </body></html>
