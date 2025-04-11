@@ -21,29 +21,99 @@
       }
     </script>
     <style>
+      .home-button {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: #1e40af;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 50;
+      }
+      .home-button:hover {
+        background-color: #1e3a8a;
+        padding-right: 25px;
+      }
+      .home-button:hover .button-text {
+        display: inline;
+        margin-left: 5px;
+      }
+      .button-text {
+        display: none;
+      }
+      .dropdown-content {
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        background-color: #e0f2fe;
+        padding: 0 1rem;
+        transform: translateY(-10px);
+        transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      }
+      .dropdown-content.open {
+        opacity: 1;
+        transform: translateY(0);
+      }
       .timeline-container {
         position: relative;
-        padding: 2rem 0;
+        padding: 4rem 0 2rem;
+        z-index:0;
       }
       .timeline-container::after {
         content: '';
         position: absolute;
         width: 6px;
         background-color: #1e40af;
-        top: 0;
-        bottom: 0;
+        top: -90px;
+        bottom: 260px;
         left: 50%;
         margin-left: -3px;
       }
       .timeline-item {
-        padding: 10px 40px;
+        padding: 90px 40px;
         position: relative;
         width: 50%;
         opacity: 0;
         transform: translateY(100px);
         transition: all 0.8s ease;
-        display: flex;
+        display: grid;
         align-items: center;
+        margin-top: -2rem;
+        z-index:1
+      }
+      .timeline-image {
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 15px;
+      }
+      .timeline-item.left .timeline-image {
+        left: calc(100% + 90px);
+        top: calc(60% + -180px);
+      }
+      .timeline-item.right .timeline-image {
+        right: calc(100% + 90px);
+        top: calc(60% + -180px) ;
+      }
+      .timeline-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .timeline-item.left .timeline-image {
+        right: -600px;
+  
+      }
+      .timeline-item.right .timeline-image {
+        left: -590px;
       }
       .timeline-item.visible {
         opacity: 1;
@@ -63,10 +133,11 @@
         z-index: 1;
       }
       .timeline-item.left {
-        left: 0;
+        left: -5px;
       }
       .timeline-item.right {
-        left: 50%;
+        left: 755px;
+
       }
       .timeline-item.right::after {
         left: -16px;
@@ -118,6 +189,9 @@
           <div class="timeline-item left">
             <div class="timeline-content">
               <h3 class="text-xl font-bold text-primary mb-4">Bối cảnh trong nước</h3>
+              <div class="timeline-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/NamKy6tinh-Taberd.jpg/1024px-NamKy6tinh-Taberd.jpg" alt="Bối cảnh trong nước thời kỳ thực dân Pháp">
+              </div>
               <div class="space-y-4">
                 <p><strong>Thực dân Pháp thống trị:</strong> Từ cuối thế kỷ 19, Việt Nam bị biến thành thuộc địa của Pháp. Chúng đàn áp dã man nhân dân, bóc lột tài nguyên và áp đặt nhiều chính sách hà khắc.</p>
                 <p><strong>Sự phát triển của phong trào cách mạng:</strong> Trong những năm 1930, phong trào cách mạng Việt Nam phát triển mạnh mẽ, đặc biệt là tại Nam Kỳ.</p>
@@ -130,6 +204,9 @@
           <div class="timeline-item right">
             <div class="timeline-content">
               <h3 class="text-xl font-bold text-primary mb-4">Bối cảnh quốc tế</h3>
+              <div class="timeline-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Bundesarchiv_Bild_183-J0422-0600-002%2C_Berlin-Karlshorst%2C_Kapitulation%2C_Shukow%2C_Keitel.jpg/250px-Bundesarchiv_Bild_183-J0422-0600-002%2C_Berlin-Karlshorst%2C_Kapitulation%2C_Shukow%2C_Keitel.jpg" alt="Bối cảnh quốc tế thời kỳ Thế chiến thứ hai">
+              </div>
               <div class="space-y-4">
                 <p><strong>Thế chiến thứ hai bùng nổ (1939):</strong> Tình hình thế giới căng thẳng, Pháp sa lầy trong chiến tranh ở châu Âu.</p>
                 <p><strong>Phát xít Nhật tiến vào Đông Dương:</strong> Gây ra sự mâu thuẫn giữa thực dân Pháp và phát xít Nhật, khiến bộ máy cai trị của Pháp ở Đông Dương trở nên bất ổn.</p>
@@ -141,6 +218,9 @@
           <div class="timeline-item left">
             <div class="timeline-content">
               <h3 class="text-xl font-bold text-primary mb-4">Cục bộ tại Nam Bộ</h3>
+              <div class="timeline-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzue2nTl-5l5zY0tNHzHnp_5WlK7fAYVsLYQ&s" alt="Tình hình cục bộ tại Nam Bộ">
+              </div>
               <div class="space-y-4">
                 <p><strong>Tình hình địa phương Cà Mau và Hòn Khoai:</strong></p>
                 <ul class="list-disc pl-6 space-y-2">
@@ -156,6 +236,9 @@
           <div class="timeline-item right">
             <div class="timeline-content">
               <h3 class="text-xl font-bold text-primary mb-4">Nguyên nhân khách quan</h3>
+              <div class="timeline-image">
+                <img src="https://blog.trginternational.com/hubfs/images/Big%20question%20in%20head.jpeg" alt="Nguyên nhân khách quan của cuộc khởi nghĩa">
+              </div>
               <div class="space-y-4">
                 <p><strong>1. Ách đô hộ tàn bạo của thực dân Pháp:</strong></p>
                 <ul class="list-disc pl-6 space-y-2">
@@ -175,6 +258,9 @@
           <div class="timeline-item left">
             <div class="timeline-content">
               <h3 class="text-xl font-bold text-primary mb-4">Nguyên nhân chủ quan</h3>
+              <div class="timeline-image">
+                <img src="https://lh5.googleusercontent.com/proxy/HvReaD_faK6J4Vt6nToqB3dsoyPZRW0AqY5KMEDu98l3MBPvu05fGZWmWEtHPMQVYxGmKBrhKvomZi-ZKZ3IStJHoBDpheKNY9M8eJBm5jGn9Y7MUASKQkT2HeRN90-7CCsTtQBlj7IZX36BPWbdSZ6uchrjEP0ethSojvfskA" alt="Nguyên nhân chủ quan của cuộc khởi nghĩa">
+              </div>
               <div class="space-y-4">
                 <p><strong>1. Sự chuẩn bị của lực lượng cách mạng:</strong></p>
                 <ul class="list-disc pl-6 space-y-2">
@@ -189,9 +275,118 @@
               </div>
             </div>
           </div>
+
+          <!-- Chuẩn bị khởi nghĩa -->
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold text-primary mb-4">Chuẩn bị khởi nghĩa</h3>
+              <div class="timeline-image">
+                <img src="images/chuan-bi-khoi-nghia.svg" alt="Giai đoạn chuẩn bị khởi nghĩa Hòn Khoai">
+              </div>
+              <div class="space-y-4">
+                <p><strong>Tổ chức lực lượng:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Thực hiện chỉ thị của Xứ ủy Nam Kỳ</li>
+                  <li>Lực lượng khoảng 30 chiến sĩ</li>
+                  <li>Trang bị vũ khí thô sơ: dao, mác, súng kíp</li>
+                </ul>
+                <p><strong>Hoạt động chuẩn bị:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Luyện tập quân sự</li>
+                  <li>Tuyên truyền vận động quần chúng</li>
+                  <li>Xây dựng cơ sở trong nhân dân</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tấn công đồn Hòn Khoai -->
+          <div class="timeline-item left">
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold text-primary mb-4">Tấn công đồn Hòn Khoai</h3>
+              <div class="timeline-image">
+                <img src="images/tan-cong-don.svg" alt="Cuộc tấn công đồn Hòn Khoai">
+              </div>
+              <div class="space-y-4">
+                <p><strong>Đêm 12/12/1940:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Đổ bộ lên đảo bằng ghe nhỏ và xuồng ba lá</li>
+                  <li>Chia nhiều mũi tấn công bất ngờ</li>
+                  <li>Nhanh chóng làm chủ tình hình</li>
+                </ul>
+                <p><strong>Thắng lợi ban đầu:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Bắt sống tên quan Pháp và binh lính</li>
+                  <li>Thu được nhiều súng đạn</li>
+                  <li>Kéo cờ đỏ búa liềm trên nóc đồn</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kết thúc khởi nghĩa -->
+          <div class="timeline-item right">
+            <div class="timeline-content">
+              <h3 class="text-xl font-bold text-primary mb-4">Kết thúc khởi nghĩa</h3>
+              <div class="timeline-image">
+                <img src="images/ket-thuc-khoi-nghia.svg" alt="Kết thúc của cuộc khởi nghĩa Hòn Khoai">
+              </div>
+              <div class="space-y-4">
+                <p><strong>Khó khăn và thất bại:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Lực lượng mỏng, vũ khí hạn chế</li>
+                  <li>Kế hoạch bị lộ</li>
+                  <li>Thiếu sự phối hợp từ các nơi</li>
+                </ul>
+                <p><strong>Hy sinh anh dũng:</strong></p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li>Phan Ngọc Hiển và đồng đội bị bắt</li>
+                  <li>Bị xử tử ngày 26/01/1941 tại Cà Mau</li>
+                  <li>Để lại tiếng vang lớn trong lịch sử</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+        
+        dropdownTriggers.forEach(trigger => {
+          let isOpen = false;
+          
+          trigger.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const arrow = this.querySelector('.fa-chevron-down');
+            
+            if (!isOpen) {
+              content.style.height = content.scrollHeight + 'px';
+              content.classList.add('open');
+              arrow.style.transform = 'rotate(180deg)';
+              isOpen = true;
+              
+              content.addEventListener('transitionend', function handler(e) {
+                if (e.propertyName === 'height') {
+                  content.style.height = 'auto';
+                  content.removeEventListener('transitionend', handler);
+                }
+              });
+            } else {
+              content.style.height = content.scrollHeight + 'px';
+              requestAnimationFrame(() => {
+                content.style.height = '0px';
+                content.classList.remove('open');
+                arrow.style.transform = 'rotate(0deg)';
+              });
+              isOpen = false;
+            }
+          });
+        });
+      });
+    </script>
 
     <!-- Di sản và Ý nghĩa lịch sử Section -->
     <section class="py-20 bg-gray-900 text-white">
@@ -201,95 +396,81 @@
           <p class="text-lg text-gray-300 max-w-3xl mx-auto">Khởi nghĩa Hòn Khoai để lại những di sản và bài học quý giá cho các thế hệ sau</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="flex flex-col space-y-4 max-w-3xl mx-auto">
           <!-- Card 1: Tinh thần đấu tranh -->
-          <div class="bg-gray-800 rounded-lg p-6 transform hover:scale-105 transition duration-300">
-            <div class="text-accent text-4xl mb-4">
-              <i class="fas fa-flag"></i>
+          <div class="bg-gray-800 rounded-lg overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-700 transition-all duration-300 flex justify-between items-center dropdown-trigger">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-flag text-accent text-3xl"></i>
+                <h3 class="text-2xl font-bold">Ý nghĩa lịch sử</h3>
+              </div>
+              <i class="fas fa-chevron-down text-accent transition-transform duration-300"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-4">Tinh thần đấu tranh</h3>
-            <p class="text-gray-300">Khởi nghĩa Hòn Khoai thể hiện tinh thần đấu tranh kiên cường của nhân dân Cà Mau nói riêng và dân tộc Việt Nam nói chung.</p>
+            <div class="dropdown-content hidden px-6 pb-6">
+              <div class="space-y-4">
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">1. Khẳng định tinh thần yêu nước nồng nàn của nhân dân Nam Bộ:</span> Khởi nghĩa Hòn Khoai nổ ra vào ngày 13/12/1940 là minh chứng sống động cho tinh thần yêu nước bất khuất của nhân dân miền Nam nói riêng và cả dân tộc Việt Nam nói chung. Trong bối cảnh thực dân Pháp đang siết chặt ách đô hộ, cuộc khởi nghĩa đã thể hiện khát vọng giành lại độc lập, tự do từ tay kẻ thù xâm lược.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">2. Là bước tiếp nối quan trọng trong phong trào cách mạng Việt Nam:</span> Khởi nghĩa Hòn Khoai nằm trong phong trào Nam Kỳ khởi nghĩa, góp phần làm lung lay hệ thống cai trị của Pháp ở miền Nam, tạo tiền đề cho các cuộc đấu tranh lớn hơn sau này.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">3. Nêu cao vai trò của tầng lớp trí thức yêu nước:</span> Hình ảnh thầy giáo Phan Ngọc Hiển đã thể hiện vai trò quan trọng của trí thức trong sự nghiệp đấu tranh giải phóng dân tộc.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">4. Góp phần xây dựng truyền thống đấu tranh anh hùng của tỉnh Cà Mau và miền Tây Nam Bộ:</span> Cuộc khởi nghĩa đã đi vào lịch sử như một trang chói lọi của đất và người Cà Mau.</p>
+              </div>
+            </div>
           </div>
 
           <!-- Card 2: Bài học lịch sử -->
-          <div class="bg-gray-800 rounded-lg p-6 transform hover:scale-105 transition duration-300">
-            <div class="text-accent text-4xl mb-4">
-              <i class="fas fa-landmark"></i>
+          <div class="bg-gray-800 rounded-lg overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-700 transition-all duration-300 flex justify-between items-center dropdown-trigger">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-landmark text-accent text-3xl"></i>
+                <h3 class="text-2xl font-bold">Bài học lịch sử</h3>
+              </div>
+              <i class="fas fa-chevron-down text-accent transition-transform duration-300"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-4">Bài học lịch sử</h3>
-            <p class="text-gray-300">Cuộc khởi nghĩa để lại bài học quý giá về sự chuẩn bị kỹ lưỡng và phối hợp lực lượng trong đấu tranh cách mạng.</p>
+            <div class="dropdown-content hidden px-6 pb-6">
+              <div class="space-y-4">
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">1. Giữ vững tinh thần yêu nước và trách nhiệm với Tổ quốc:</span> Trong bối cảnh đất nước đang hội nhập quốc tế sâu rộng, tinh thần yêu nước thể hiện qua học tập tốt, lao động sáng tạo, bảo vệ chủ quyền biển đảo, gìn giữ bản sắc văn hóa dân tộc.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">2. Phát huy vai trò của trí thức và người trẻ:</span> Bài học từ thầy giáo Phan Ngọc Hiển cho thấy trí thức và lớp trẻ có thể trở thành lực lượng tiên phong trong thay đổi xã hội.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">3. Tôn trọng và phát huy sức mạnh quần chúng nhân dân:</span> Cuộc khởi nghĩa Hòn Khoai thành công bước đầu là nhờ sự đồng lòng, nhất trí của người dân các tầng lớp.</p>
+                <p class="text-gray-300 text-xl mb-4"><span class="text-xl font-bold block mb-2">4. Không ngại hy sinh, gian khổ vì lý tưởng cao đẹp:</span> Những người như Phan Ngọc Hiển và đồng đội sẵn sàng hy sinh vì lý tưởng độc lập đã trở thành biểu tượng về lòng dũng cảm, sự kiên trung.</p>
+              </div>
+            </div>
           </div>
 
           <!-- Card 3: Tưởng nhớ anh hùng -->
-          <div class="bg-gray-800 rounded-lg p-6 transform hover:scale-105 transition duration-300">
-            <div class="text-accent text-4xl mb-4">
-              <i class="fas fa-users"></i>
+          <div class="bg-gray-800 rounded-lg overflow-hidden">
+            <div class="p-6 cursor-pointer hover:bg-gray-700 transition-all duration-300 flex justify-between items-center dropdown-trigger">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-users text-accent text-3xl"></i>
+                <h3 class="text-2xl font-bold">Tưởng nhớ anh hùng</h3>
+              </div>
+              <i class="fas fa-chevron-down text-accent transition-transform duration-300"></i>
             </div>
-            <h3 class="text-2xl font-bold mb-4">Tưởng nhớ anh hùng</h3>
-            <p class="text-gray-300">Phan Ngọc Hiển và các chiến sĩ đã hy sinh được tôn vinh là những anh hùng dân tộc, tên tuổi được đặt cho nhiều đường phố, trường học.</p>
+            <div class="dropdown-content hidden px-6 pb-6">
+              <div class="space-y-4">
+                <p class="text-gray-300 text-xl mb-4" >Cuộc khởi nghĩa Hòn Khoai là biểu tượng sáng ngời của lòng yêu nước và tinh thần bất khuất của dân tộc Việt Nam. Phan Ngọc Hiển – người lãnh đạo cuộc khởi nghĩa – cùng khoảng 30 chiến sĩ cách mạng quả cảm đã không quản ngại gian khổ, hi sinh thân mình để đấu tranh giành lại độc lập cho quê hương.</p>
+                <p class="text-gray-300 text-xl mb-4">Họ là hiện thân của lòng yêu nước nồng nàn, của ý chí quật cường không khuất phục trước bạo lực. Tinh thần chiến đấu của họ đã trở thành ngọn lửa thiêng lan tỏa trong lòng biết bao thế hệ.</p>
+                <p class="text-gray-300 text-xl mb-4">Tên tuổi của các anh hùng khởi nghĩa Hòn Khoai được khắc ghi vào lịch sử, đặt tên cho nhiều con đường, trường học và công trình tưởng niệm. Họ xứng đáng là biểu tượng bất tử của tinh thần yêu nước và là nguồn cảm hứng cho thế hệ trẻ trong sự nghiệp dựng xây và bảo vệ Tổ quốc hôm nay.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const content = trigger.parentElement.querySelector('.dropdown-content');
+            const arrow = trigger.querySelector('.fa-chevron-down');
+            content.classList.toggle('hidden');
+            arrow.style.transform = content.classList.contains('hidden') ? '' : 'rotate(180deg)';
+          });
+        });
+      </script>
     </section>
 
     <!-- Ý nghĩa lịch sử chi tiết Section -->
     <section class="py-20 bg-white">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-primary mb-8">Ý nghĩa lịch sử của khởi nghĩa Hòn Khoai</h2>
-          
-          <!-- Phần 1 -->
-          <div class="mb-12">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">1. Khẳng định tinh thần yêu nước nồng nàn của nhân dân Nam Bộ</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">Khởi nghĩa Hòn Khoai nổ ra vào ngày 13/12/1940 là minh chứng sống động cho tinh thần yêu nước bất khuất của nhân dân miền Nam nói riêng và cả dân tộc Việt Nam nói chung. Trong bối cảnh thực dân Pháp đang siết chặt ách đô hộ, cuộc khởi nghĩa đã thể hiện khát vọng giành lại độc lập, tự do từ tay kẻ thù xâm lược. Những con người tham gia khởi nghĩa, phần lớn là nông dân, công nhân, trí thức trẻ, đã không ngần ngại hy sinh tính mạng để bảo vệ quê hương.</p>
-          </div>
-
-          <!-- Phần 2 -->
-          <div class="mb-12">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">2. Là bước tiếp nối quan trọng trong phong trào cách mạng Việt Nam</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">Khởi nghĩa Hòn Khoai nằm trong phong trào Nam Kỳ khởi nghĩa – một chuỗi những cuộc nổi dậy lớn nhằm chống lại thực dân Pháp. Dù thất bại, nhưng nó đã góp phần làm lung lay hệ thống cai trị của Pháp ở miền Nam, tạo tiền đề cho các cuộc đấu tranh lớn hơn sau này, đặc biệt là Cách mạng tháng Tám năm 1945.</p>
-          </div>
-
-          <!-- Phần 3 -->
-          <div class="mb-12">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">3. Nêu cao vai trò của tầng lớp trí thức yêu nước</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">Hình ảnh thầy giáo Phan Ngọc Hiển – người lãnh đạo cuộc khởi nghĩa – đã thể hiện vai trò quan trọng của trí thức trong sự nghiệp đấu tranh giải phóng dân tộc. Sự kết hợp giữa lý tưởng cách mạng và tri thức đã góp phần nâng cao chất lượng của phong trào yêu nước thời kỳ đó.</p>
-          </div>
-
-          <!-- Phần 4 -->
-          <div class="mb-12">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">4. Góp phần xây dựng truyền thống đấu tranh anh hùng của tỉnh Cà Mau và miền Tây Nam Bộ</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">Cuộc khởi nghĩa đã đi vào lịch sử như một trang chói lọi của đất và người Cà Mau. Truyền thống đó đã trở thành nguồn cảm hứng cho các thế hệ tiếp theo trong công cuộc dựng nước và giữ nước.</p>
-          </div>
-
-          <div class="border-t border-gray-200 my-12 pt-12">
-            <h2 class="text-3xl font-bold text-primary mb-8">Bài học kinh nghiệm và giá trị vận dụng trong thời đại ngày nay</h2>
-
-            <!-- Bài học 1 -->
-            <div class="mb-12">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">1. Giữ vững tinh thần yêu nước và trách nhiệm với Tổ quốc</h3>
-              <p class="text-gray-600 leading-relaxed mb-4">Trong bối cảnh đất nước đang hội nhập quốc tế sâu rộng, tinh thần yêu nước không chỉ thể hiện qua đấu tranh vũ trang mà còn qua những hành động cụ thể như: học tập tốt, lao động sáng tạo, bảo vệ chủ quyền biển đảo, gìn giữ bản sắc văn hóa dân tộc… Cuộc khởi nghĩa Hòn Khoai là lời nhắc nhở thế hệ trẻ không được quên quá khứ, luôn giữ lòng tự hào dân tộc và ý thức trách nhiệm trong công cuộc xây dựng, bảo vệ đất nước hiện nay.</p>
-            </div>
-
-            <!-- Bài học 2 -->
-            <div class="mb-12">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">2. Phát huy vai trò của trí thức và người trẻ</h3>
-              <p class="text-gray-600 leading-relaxed mb-4">Bài học từ thầy giáo Phan Ngọc Hiển cho thấy trí thức và lớp trẻ có thể trở thành lực lượng tiên phong trong thay đổi xã hội. Trong thời đại 4.0, người trẻ cần nắm bắt cơ hội học tập, sáng tạo và cống hiến vì mục tiêu phát triển đất nước, không thờ ơ hay mất phương hướng trước những biến động của thời cuộc.</p>
-            </div>
-
-            <!-- Bài học 3 -->
-            <div class="mb-12">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">3. Tôn trọng và phát huy sức mạnh quần chúng nhân dân</h3>
-              <p class="text-gray-600 leading-relaxed mb-4">Cuộc khởi nghĩa Hòn Khoai thành công bước đầu là nhờ sự đồng lòng, nhất trí của người dân các tầng lớp. Bài học về sự gắn bó giữa cán bộ và nhân dân vẫn còn nguyên giá trị – trong mọi phong trào hay chính sách, nếu có sự tham gia và đồng thuận từ nhân dân thì sẽ tạo ra sức mạnh to lớn để thực hiện thành công.</p>
-            </div>
-
-            <!-- Bài học 4 -->
-            <div class="mb-12">
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">4. Không ngại hy sinh, gian khổ vì lý tưởng cao đẹp</h3>
-              <p class="text-gray-600 leading-relaxed mb-4">Những người như Phan Ngọc Hiển và đồng đội sẵn sàng hy sinh vì lý tưởng độc lập – tự do đã trở thành biểu tượng về lòng dũng cảm, sự kiên trung. Bài học ấy tiếp tục truyền cảm hứng cho lớp trẻ sống có lý tưởng, có hoài bão và không chùn bước trước khó khăn thử thách.</p>
-            </div>
-          </div>
-
           <!-- Kết luận -->
           <div class="bg-gray-50 p-8 rounded-lg">
             <h2 class="text-3xl font-bold text-primary mb-6">Kết luận</h2>
@@ -345,6 +526,13 @@
       </div>
     </footer>
 
+    <!-- Home Button -->
+    <a href="index.html" class="home-button ">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z" fill="currentColor"/>
+      </svg><span class="button-text">Về trang chủ</span>
+    </a>
+
     <script>
       // Intersection Observer for timeline animation
       const observer = new IntersectionObserver((entries) => {
@@ -361,5 +549,33 @@
         observer.observe(item);
       });
     </script>
-</body>
+    <script>
+      const btn = document.getElementById('toggleBtn');
+const dropdown = document.getElementById('dropdown');
+let isOpen = false;
+
+btn.addEventListener('click', () => {
+  if (!isOpen) {
+    // Mở dropdown
+    dropdown.style.height = dropdown.scrollHeight + 'px';
+    dropdown.classList.add('open');
+    isOpen = true;
+
+    dropdown.addEventListener('transitionend', function handler(e) {
+      if (e.propertyName === 'height') {
+        dropdown.style.height = 'auto'; // reset để responsive
+        dropdown.removeEventListener('transitionend', handler);
+      }
+    });
+  } else {
+    // Đóng dropdown: set lại height hiện tại để animate về 0
+    dropdown.style.height = dropdown.scrollHeight + 'px';
+    dropdown.offsetHeight; // force repaint
+    dropdown.style.height = '0';
+    dropdown.classList.remove('open');
+    isOpen = false;
+  }
+});
+   </script>
+ </body>
 </html>

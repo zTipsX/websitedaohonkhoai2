@@ -20,6 +20,31 @@
         }
       }
     </script>
+      <style>
+        .home-button {
+          position: fixed;
+          bottom: 20px;
+          left: 20px;
+          background-color: #1e40af;
+          color: white;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 50;
+        }
+        .home-button:hover {
+          background-color: #1e3a8a;
+          padding-right: 25px;
+        }
+        .home-button:hover .button-text {
+          display: inline;
+          margin-left: 5px;
+        }
+        .button-text {
+          display: none;
+        }
+      </style>
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Header -->
@@ -319,5 +344,12 @@
         </div>
       </div>
     </footer>
+
+    <!-- Home Button -->
+    <a href="index.html" class="home-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z" fill="currentColor"/>
+      </svg><span class="button-text">Về trang chủ</span>
+    </a>
 </body>
 </html>
