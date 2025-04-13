@@ -7,6 +7,8 @@
     <title>Du lịch Hòn Khoai - Trải nghiệm độc đáo tại vùng biển Cà Mau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -20,7 +22,181 @@
         }
       }
     </script>
+    <style>
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-link {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      .mobile-nav-link:hover {
+        background-color: #f3f4f6;
+        color: #f59e0b;
+        transform: translateX(5px);
+      }
+
+      #close-menu {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      #close-menu:hover {
+        transform: rotate(90deg);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 45;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .btn-hover {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Đăng ký plugin ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        function openMenu() {
+          mobileMenu.classList.add('active');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          document.querySelector('main').style.filter = 'blur(5px)';
+        }
+
+        function closeMenuHandler() {
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          document.querySelector('main').style.filter = 'none';
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuHandler);
+        overlay.addEventListener('click', closeMenuHandler);
+
+        // Header animation với hiệu ứng slide down và fade
+        gsap.from('header', {
+          y: -100,
+          opacity: 0,
+          duration: 1.2,
+          ease: 'power4.out'
+        });
+
+        // Hero section animation với hiệu ứng text reveal
+        const heroTl = gsap.timeline();
+        heroTl.from('.hero-section h1', {
+          opacity: 0,
+          y: 100,
+          duration: 1,
+          ease: 'power4.out'
+        })
+        .from('.hero-section p', {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power3.out'
+        }, '-=0.8');
+
+        // Hoạt động section animation
+        gsap.from('#hoat-dong .text-center', {
+          scrollTrigger: {
+            trigger: '#hoat-dong',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Hoạt động cards stagger animation
+        const cards = gsap.utils.toArray('#hoat-dong .bg-gray-50');
+        cards.forEach((card, i) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top center+=100',
+              toggleActions: 'play none none reverse'
+            },
+            y: 60,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            delay: i * 0.2
+          });
+        });
+
+        // Footer animation
+        gsap.from('footer', {
+          scrollTrigger: {
+            trigger: 'footer',
+            start: 'top bottom',
+            toggleActions: 'play none none reverse'
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      });
+    </script>
       <style>
+        .home-button {
+          transition: all 0.3s ease;
+          transform: translateY(0);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
         .home-button {
           position: fixed;
           bottom: 20px;
@@ -32,6 +208,7 @@
           cursor: pointer;
           transition: all 0.3s ease;
           z-index: 50;
+          white-space: nowrap;
         }
         .home-button:hover {
           background-color: #1e3a8a;
@@ -286,6 +463,41 @@
             Gửi thông tin để được tư vấn và đặt tour du lịch Hòn Khoai
           </p>
         </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-md">
+          <form>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">Họ và tên</label>
+                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="phone" class="block text-gray-700 font-medium mb-2">Số điện thoại</label>
+                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div>
+                <label for="date" class="block text-gray-700 font-medium mb-2">Ngày dự kiến đi</label>
+                <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              <div class="md:col-span-2">
+                <label for="message" class="block text-gray-700 font-medium mb-2">Nội dung</label>
+                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
+              </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+              <button type="submit" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                Gửi thông tin <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
         
         <div class="bg-gray-50 rounded-xl p-8 shadow-md text-center">
           <p class="text-gray-600 text-lg mb-8">Bấm vào nút phía dưới để vào trang biểu mẫu</p>
@@ -294,23 +506,7 @@
           </a>
         </div>
           
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="text-center">
-            <i class="fas fa-map-marker-alt text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Địa chỉ</h3>
-            <p>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</p>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-phone text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Điện thoại</h3>
-            <p>0xxx.xxx.xxx</p>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-envelope text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Email</h3>
-            <p>info@honkhoai.vn</p>
-          </div>
-        </div>
+
       </div>
     </section>
   
@@ -338,23 +534,7 @@
               <li><a href="#lien-he" class="hover:text-accent">Liên hệ</a></li>
             </ul>
           </div>
-          <div>
-            <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-phone mt-1 mr-2"></i>
-                <span>0xxx.xxx.xxx</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-envelope mt-1 mr-2"></i>
-                <span>info@honkhoai.vn</span>
-              </li>
-            </ul>
-          </div>
+
         </div>
         <div class="border-t border-blue-800 mt-8 pt-8 text-center">
           <p>&copy; 2023 Đảo Hòn Khoai. Tất cả các quyền được bảo lưu.</p>

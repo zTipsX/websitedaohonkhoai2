@@ -7,6 +7,8 @@
     <title>Cảnh quan Hòn Khoai - Vẻ đẹp hoang sơ của vùng biển Cà Mau</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -20,6 +22,297 @@
         }
       }
     </script>
+    <style>
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-link {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      .mobile-nav-link:hover {
+        background-color: #f3f4f6;
+        color: #f59e0b;
+        transform: translateX(5px);
+      }
+
+      .btn-hover {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      #close-menu {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      #close-menu:hover {
+        transform: rotate(90deg);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 45;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Đăng ký plugin ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        function openMenu() {
+          mobileMenu.classList.add('active');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          document.querySelector('main').style.filter = 'blur(5px)';
+          document.querySelector('main').style.transition = 'filter 0.3s ease';
+        }
+
+        function closeMenuHandler() {
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          document.querySelector('main').style.filter = 'none';
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuHandler);
+        overlay.addEventListener('click', closeMenuHandler);
+
+        // Close menu when clicking on mobile nav links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', closeMenuHandler);
+        });
+
+        // Header animation
+        gsap.from('header', {
+          y: -100,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out'
+        });
+
+        // Hero section animation
+        const heroTl = gsap.timeline();
+        heroTl.from('.hero-section h1', {
+          opacity: 0,
+          y: 100,
+          duration: 1.5,
+          ease: 'power4.out'
+        })
+        .from('.hero-section p', {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power3.out'
+        }, '-=0.8')
+        .from('.hero-section a', {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, '-=0.5');
+
+        // Tổng quan section animation
+        gsap.from('#tong-quan .text-center', {
+          scrollTrigger: {
+            trigger: '#tong-quan',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate các phần tử trong section tổng quan
+        gsap.utils.toArray('#tong-quan .bg-gray-50, #tong-quan .bg-white').forEach((item, i) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: 'top center+=100',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power2.out',
+            delay: i * 0.2
+          });
+        });
+
+        // Animate hệ sinh thái section
+        gsap.from('#he-sinh-thai .text-center', {
+          scrollTrigger: {
+            trigger: '#he-sinh-thai',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate các card trong hệ sinh thái
+        gsap.utils.toArray('#he-sinh-thai .bg-white').forEach((card, i) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: 'top center+=100',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power2.out',
+            delay: i * 0.2
+          });
+        });
+
+        // Animate điểm tham quan section
+        gsap.from('#diem-tham-quan .text-center', {
+          scrollTrigger: {
+            trigger: '#diem-tham-quan',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate các điểm tham quan
+        gsap.utils.toArray('#diem-tham-quan .bg-gray-50').forEach((spot, i) => {
+          gsap.from(spot, {
+            scrollTrigger: {
+              trigger: spot,
+              start: 'top center+=100',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: 'power2.out',
+            delay: i * 0.2
+          });
+        });
+
+        // Animate hình ảnh
+        gsap.utils.toArray('img').forEach(img => {
+          gsap.from(img, {
+            scrollTrigger: {
+              trigger: img,
+              start: 'top center+=100',
+              toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            scale: 0.9,
+            duration: 1,
+            ease: 'power2.out'
+          });
+        });
+
+        // Animate liên kết section
+        gsap.from('.py-16.bg-gray-50', {
+          scrollTrigger: {
+            trigger: '.py-16.bg-gray-50',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate liên hệ section
+        gsap.from('.py-20.bg-white .text-center', {
+          scrollTrigger: {
+            trigger: '.py-20.bg-white',
+            start: 'top center+=100',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+
+        // Animate thông tin liên hệ
+        gsap.utils.toArray('.mt-12.grid > div').forEach((item, i) => {
+          gsap.from(item, {
+            scrollTrigger: {
+              trigger: item,
+              start: 'top center+=100',
+              toggleActions: 'play none none none',
+
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.8,
+            ease: 'power2.out',
+            delay: i * 0.3
+          });
+        });
+
+        // Footer animation
+        gsap.from('footer', {
+          scrollTrigger: {
+            trigger: 'footer',
+            start: 'top bottom',
+            toggleActions: 'play none none reverse'
+          },
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      });
+    </script>
       <style>
         .home-button {
           position: fixed;
@@ -32,6 +325,7 @@
           cursor: pointer;
           transition: all 0.3s ease;
           z-index: 50;
+          white-space: nowrap;
         }
         .home-button:hover {
           background-color: #1e3a8a;
@@ -64,9 +358,36 @@
             <li><a href="#lien-he" class="text-gray-800 hover:text-accent font-medium">Liên hệ</a></li>
           </ul>
         </nav>
-        <button class="md:hidden text-gray-800">
+        <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
           <i class="fas fa-bars text-2xl"></i>
         </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 md:hidden">
+          <div class="p-4 border-b flex justify-between items-center">
+            <h2 class="text-xl font-bold text-primary">Menu</h2>
+            <button id="close-menu" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+          <nav class="p-4">
+            <a href="index.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-home mr-2"></i>Trang chủ
+            </a>
+            <a href="canh-quan.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-mountain mr-2"></i>Cảnh quan
+            </a>
+            <a href="lich-su.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-history mr-2"></i>Lịch sử
+            </a>
+            <a href="du-lich.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-plane mr-2"></i>Du lịch
+            </a>
+            <a href="form.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-edit mr-2"></i>Tâm sự
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
   
@@ -77,7 +398,7 @@
       <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Cảnh quan Hòn Khoai</h1>
         <p class="text-xl md:text-2xl text-white mb-8">Vẻ đẹp hoang sơ của vùng biển Cà Mau</p>
-        <a href="#tong-quan" class="bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+        <a href="#tong-quan" class="bg-accent hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 btn-hover">
           Khám phá ngay
         </a>
       </div>
@@ -253,7 +574,7 @@
         <p class="text-gray-600 max-w-3xl mx-auto text-lg mb-8">
           Hòn Khoai mang đến cho du khách nhiều trải nghiệm thú vị và độc đáo, từ khám phá thiên nhiên đến tìm hiểu văn hóa địa phương.
         </p>
-        <a href="du-lich.html" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+        <a href="du-lich.html" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 btn-hover">
           Xem các hoạt động du lịch <i class="fas fa-arrow-right ml-2"></i>
         </a>
       </div>
@@ -278,20 +599,6 @@
         </div>
           
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="text-center">
-            <i class="fas fa-map-marker-alt text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Địa chỉ</h3>
-            <p>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</p>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-phone text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Điện thoại</h3>
-            <p>0xxx.xxx.xxx</p>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-envelope text-2xl text-primary mb-4"></i>
-            <h3 class="text-lg font-bold mb-2">Email</h3>
-            <p>info@honkhoai.vn</p>
           </div>
         </div>
       </div>
@@ -322,21 +629,8 @@
             </ul>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-phone mt-1 mr-2"></i>
-                <span>0xxx.xxx.xxx</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-envelope mt-1 mr-2"></i>
-                <span>info@honkhoai.vn</span>
-              </li>
-            </ul>
+            <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
+            <p class="text-gray-300 mb-4">Cập nhật tin tức mới nhất về Hòn Khoai</p>
           </div>
         </div>
         <div class="border-t border-blue-800 mt-8 pt-8 text-center">

@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tâm sự đôi dòng về bản thân - Đảo Hòn Khoai">
-    <title>Tâm sự đôi dòng về bản thân - Đảo Hòn Khoai</title>
+    <meta name="description" content="Biểu mẫu">
+    <title>Biểu mẫu  (3 trang)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -20,14 +22,352 @@
         }
       }
     </script>
+<style>
+/* Modal styles */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.1);
+}
+
+.circle-frame {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.circle-frame:hover {
+  transform: scale(1.05);
+}
+
+body {
+      margin: 0 auto;
+      max-width: 1920px;
+    }
+
+    .py-20 {
+      background-image: url('https://i.pinimg.com/originals/be/14/1b/be141b5f8bfd10a522176b7c612b9fd0.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .py-20::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.85);
+      z-index: -1;
+    }
+
+.circle-frame {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  margin: 0 auto 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 15px rgba(30, 64, 175, 0.3);
+  animation: glowPulse 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.circle-frame:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 0 30px rgba(30, 64, 175, 0.5);
+}
+
+/* Button hover animations */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Form field animations */
+.form-field {
+  transition: all 0.3s ease;
+}
+
+.form-field:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 15px rgba(30, 64, 175, 0.3); }
+  50% { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 25px rgba(30, 64, 175, 0.5); }
+  100% { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 15px rgba(30, 64, 175, 0.3); }
+}
+
+.form-field {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 0 10px rgba(30, 64, 175, 0.1);
+  transition: all 0.3s ease;
+}
+
+.form-field:hover {
+  border-color: #1e40af;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 20px rgba(30, 64, 175, 0.3);
+  transform: translateY(-2px);
+}
+
+input[type="text"], input[type="date"], textarea {
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+  box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2), 0 0 15px rgba(30, 64, 175, 0.2);
+}
+
+.circle-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#form1 {
+  background-image: url('https://i.pinimg.com/originals/e6/0c/4a/e60c4ae6305c1b5d57e9954166761db9.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: -1;
+}
+
+#form1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.75rem;
+}
+
+#form1 > * {
+  position: relative;
+  z-index: 1;
+}
+
+.form-field {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.form-field:hover {
+  border-color: #1e40af;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.glow-effect {
+  box-shadow: 0 0 25px 5px rgba(30, 64, 175, 0.4), 0 0 25px 5px rgba(30, 64, 175, 0.4);
+}
+
+
+
+</style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans glow-effect mx-auto" style="max-width: 1920px; margin: 0 auto;">
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="imageModal">
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="Full size image">
+    <div class="modal-close" onclick="closeModal()">
+      <i class="fas fa-times"></i>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// Animation functions
+function initAnimations() {
+  // Navbar animation
+  gsap.from('header', {
+    y: -100,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+  });
+
+  // Title and description animation
+  gsap.from('.text-center h1', {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.5,
+    ease: 'power3.out'
+  });
+
+  gsap.from('.text-center p', {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.8,
+    ease: 'power3.out'
+  });
+
+  // Form animations
+  gsap.from('#form1', {
+    x: -100,
+    opacity: 0,
+    duration: 1,
+    delay: 1,
+    ease: 'power3.out'
+  });
+}
+
+// Form switching animations
+function showForm(formNumber) {
+  const forms = [document.getElementById('form1'), document.getElementById('form2'), document.getElementById('form3')];
+  const currentForm = forms[formNumber - 1];
+  const otherForms = forms.filter((form, index) => index !== formNumber - 1);
+
+  // Hide other forms
+  otherForms.forEach(form => {
+    gsap.to(form, {
+      opacity: 0,
+      x: -50,
+      duration: 0.3,
+      onComplete: () => {
+        form.classList.add('hidden');
+      }
+    });
+  });
+
+  // Show selected form
+  currentForm.classList.remove('hidden');
+  gsap.fromTo(currentForm,
+    { opacity: 0, x: 50 },
+    { opacity: 1, x: 0, duration: 0.5 }
+  );
+}
+
+// Initialize animations when DOM is loaded
+document.addEventListener('DOMContentLoaded', initAnimations);
+
+function openModal(imageSrc) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modalImg.src = imageSrc;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside the image
+document.getElementById('imageModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeModal();
+  }
+});
+
+// Add click event listeners to all circle frames
+document.addEventListener('DOMContentLoaded', function() {
+  const circleFrames = document.querySelectorAll('.circle-frame');
+  circleFrames.forEach(frame => {
+    frame.addEventListener('click', function() {
+      const img = this.querySelector('img');
+      openModal(img.src);
+    });
+  });
+});
+</script></body>
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-50">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center">
-          <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
-          <h1 class="text-2xl font-bold text-primary">Đảo Hòn Khoai</h1>
+          <i class="fas fa-file-alt text-3xl text-accent mr-2"></i>
+          <h1 class="text-2xl font-bold text-primary">Biểu mẫu </h1>
         </div>
         <nav class="hidden md:block">
           <ul class="flex space-x-8">
@@ -45,47 +385,52 @@
       </div>
     </header>
   
-    <!-- Form Section -->
+    <!-- Main Content -->
     <section class="py-20 bg-gray-50">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-16">
-          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">TÂM SỰ ĐÔI DÒNG VỀ BẢN THÂN</h1>
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">BIỂU MẪU </h1>
           <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
           <p class="text-gray-600 max-w-3xl mx-auto text-lg">
-            Chia sẻ một chút về bản thân để chúng ta hiểu nhau hơn
+            Di chuyển qua các trang để điền thông tin vào biểu mẫu
           </p>
         </div>
         
-        <div class="bg-white rounded-xl p-8 shadow-md">
+        <!-- Form 1 -->
+        <div id="form1" class="bg-white rounded-xl p-8 shadow-md mb-6">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 1</h3>
+          <div class="circle-frame">
+            <img src="images\ngocnguyen.jpg" alt="Avatar của Nguyễn Hồng Ngọc">
+          </div>
           <form class="space-y-6">
             <div class="space-y-4">
               <div class="flex flex-col md:flex-row md:items-center">
-                <label for="ten" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
-                <input id="ten" type="text" value="Nguyễn Hồng Ngọc" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+                <label for="ten1" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten1" type="text" value="Nguyễn Hồng Ngọc" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row md:items-center">
-                <label for="ns" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
-                <input id="ns" type="text" value="10/03/2007" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+                <label for="ns1" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns1" type="date" value="2007-04-10" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row md:items-center">
-                <label for="gt" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
                 <div class="w-full md:w-2/3 flex items-center space-x-4">
                   <div class="flex items-center">
-                    <input id="gt-nam" type="radio" value="Nam" name="gender" class="mr-2 text-primary focus:ring-primary">
-                    <label for="gt-nam">Nam</label>
+                    <input id="gt1-nam" type="radio" name="gt1" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt1-nam">Nam</label>
                   </div>
                   <div class="flex items-center">
-                    <input id="gt-nu" type="radio" value="Nữ" name="gender" checked class="mr-2 text-primary focus:ring-primary">
-                    <label for="gt-nu">Nữ</label>
+                    <input id="gt1-nu" type="radio" name="gt1" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt1-nu">Nữ</label>
                   </div>
                 </div>
               </div>
               
               <div class="flex flex-col md:flex-row md:items-center">
-                <label for="color" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
-                <input type="text" id="color" value="Hồng" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+                <label for="color1" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color1" value="Hồng" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row">
@@ -94,45 +439,505 @@
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="space-y-2">
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-1">Bóng đá</label>
+                        <input type="checkbox" id="sport1-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-1">Bóng đá</label>
                       </div>
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-2">Cầu lông</label>
+                        <input type="checkbox" id="sport1-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-2">Cầu lông</label>
                       </div>
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-3">Bóng chuyền</label>
+                        <input type="checkbox" id="sport1-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-3">Bóng chuyền</label>
                       </div>
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-4">Ca hát</label>
+                        <input type="checkbox" id="sport1-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-4">Ca hát</label>
                       </div>
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-5">Nhảy – Múa</label>
+                        <input type="checkbox" id="sport1-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-5">Nhảy – Múa</label>
                       </div>
                       <div class="flex items-center">
-                        <input type="checkbox" id="sport-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
-                        <label for="sport-6">Khác</label>
+                        <input type="checkbox" id="sport1-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport1-6">Khác</label>
                       </div>
                     </div>
-                    <div class="flex justify-center items-center">
-                      <img src="https://tse1.mm.bing.net/th?id=OIP.1OO8k44ORXmrJr3yo5OkRAHaEk&pid=Api&P=0&h=220" height="90" width="auto" class="rounded-lg shadow-md">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs1" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs1" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Sống tích cực</textarea>
+              </div>
+              
+              <div class="flex justify-end pt-4">
+                <button type="button" onclick="showForm(2)" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                  Trang tiếp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Form 2 -->
+        <div id="form2" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 2</h3>
+          <div class="circle-frame">
+            <img src="images\mongquynh.jpg" alt="Avatar của Trần Mộng Quỳnh">
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ten2" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten2" type="text" value="Trần Mộng Quỳnh" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns2" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns2" type="date" value="2007-09-30" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt2-nam" type="radio" name="gt2" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt2-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt2-nu" type="radio" name="gt2" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt2-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color2" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color2" value="Tím" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport2-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport2-6">Khác</label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               
               <div class="flex flex-col md:flex-row md:items-center">
-                <label for="subject" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
-                <input type="text" id="subject" value="Tiếng Anh" readonly class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700">
+                <label for="subject2" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject2" value="Vật lý" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row md:items-start">
-                <label for="pcs" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
-                <textarea name="phuongcham" id="pcs" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Sống tích cực</textarea>
+                <label for="pcs2" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs2" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Sống chậm thoiiiiii</textarea>
+              </div>
+              
+              <div class="flex justify-between pt-4">
+                <button type="button" onclick="showForm(1)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+                  <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                </button>
+                <button type="button" onclick="showForm(3)" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                  Trang tiếp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Form 3 -->
+        <div id="form3" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 3</h3>
+          <div class="circle-frame">
+            <img src="images\khatu.jpg" alt="Avatar của Lê Vũ Khả Tú">
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ten3" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten3" type="text" value="Lê Vũ Khả Tú" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns3" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns3" type="date" value="2007-06-18" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt3-nam" type="radio" name="gt3" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt3-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt3-nu" type="radio" name="gt3" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt3-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color3" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color3" value="Đen" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-4" value="Ca hát" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-5" value="Nhảy - Múa" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport3-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport3-6">Khác</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject3" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject3" value="Địa lý" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs3" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs3" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Té đâu đứng lên ở đó</textarea>
+              </div>
+              
+              <div class="flex justify-between pt-4">
+                <button type="button" onclick="showForm(2)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+                  <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                </button>
+                <button type="button" onclick="showForm(4)" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                  Trang tiếp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Form 4 -->
+        <div id="form4" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 4</h3>
+          <div class="circle-frame">
+            <img src="images/placeholder.txt" alt="Avatar của Nguyễn Thị Thùy Dương">
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+5
+                <label for="ten4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten4" type="text" value="Trần Châu Hoàng" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns4" type="date" value="2007-04-03" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt4-nam" type="radio" name="gt4" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt4-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt4-nu" type="radio" name="gt4" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt4-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color4" value="Màu Hồng =))))" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-1" value="Bóng đá" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-4" value="Ca hát" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-6">Khác</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject4" value="Tiếng Anh" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs4" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">99% các con bạc đều bỏ cuộc trước khi thắng lớn 🤑🤑🤑</textarea>
+              </div>
+              
+              <div class="flex justify-between pt-4">
+                <button type="button" onclick="showForm(3)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+                  <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                </button>
+                <button type="button" onclick="showForm(5)" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                  Trang tiếp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Form 5 -->
+        <div id="form5" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 5</h3>
+          <div class="circle-frame">
+            <img src="images\anhtuan.jpg" alt="Avatar của Nguyễn Thị Thùy Linh">
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ten5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten5" type="text" value="Nguyễn Anh Tuấn" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns5" type="date" value="2007-03-21" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt5-nam" type="radio" name="gt5" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt5-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt5-nu" type="radio" name="gt5" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt5-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color5" value="Xanh Dương" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport5-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport5-6">Khác</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject5" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs5" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
+              </div>
+              
+              <div class="flex justify-start pt-4">
+                <button type="button" onclick="showForm(4)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+                  <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Form 4 -->
+        <div id="form4" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+          <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 4</h3>
+          <div class="circle-frame">
+            <img src="images/placeholder.txt" alt="Avatar của Nguyễn Thị Thùy Dương">
+          </div>
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ten4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+                <input id="ten4" type="text" value="Trần Châu Hoàng" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="ns4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+                <input id="ns4" type="date" value="2007-04-03" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+                <div class="w-full md:w-2/3 flex items-center space-x-4">
+                  <div class="flex items-center">
+                    <input id="gt4-nam" type="radio" name="gt4" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt4-nam">Nam</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input id="gt4-nu" type="radio" name="gt4" class="mr-2 text-primary focus:ring-primary">
+                    <label for="gt4-nu">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="color4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+                <input type="text" id="color4" value="Màu Hồng =))))" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row">
+                <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+                <div class="w-full md:w-2/3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-1" value="Bóng đá" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-1">Bóng đá</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-2">Cầu lông</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-3">Bóng chuyền</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-4" value="Ca hát" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-4">Ca hát</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-5">Nhảy – Múa</label>
+                      </div>
+                      <div class="flex items-center">
+                        <input type="checkbox" id="sport4-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                        <label for="sport4-6">Khác</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject4" value="Tiếng Anh" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+              </div>
+              
+              <div class="flex flex-col md:flex-row md:items-start">
+                <label for="pcs4" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+                <textarea id="pcs4" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">99% các con bạc đều bỏ cuộc trước khi thắng lớn 🤑🤑🤑</textarea>
+              </div>
+              
+              <div class="flex justify-between pt-4">
+                <button type="button" onclick="showForm(3)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+                  <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                </button>
+                <button type="button" onclick="showForm(5)" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition duration-300 flex items-center">
+                  Trang tiếp <i class="fas fa-arrow-right ml-2"></i>
+                </button>
               </div>
             </div>
           </form>
@@ -145,8 +950,8 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">Đảo Hòn Khoai</h3>
-            <p class="mb-4">Viên ngọc xanh của vùng biển Cà Mau</p>
+            <h3 class="text-xl font-bold mb-4">Biểu mẫu </h3>
+            <p class="mb-4">Hệ thống quản lý biểu mẫu</p>
             <div class="flex space-x-4">
               <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-instagram"></i></a>
@@ -157,7 +962,12 @@
           <div>
             <h3 class="text-xl font-bold mb-4">Liên kết nhanh</h3>
             <ul class="space-y-2">
-              <li><a href="index.html" class="hover:text-accent">Quay lại trang chủ</a></li>
+            <li><a href="index.html" class="text-gray-800 hover:text-accent font-medium">Trang chủ</a></li>
+            <li><a href="canh-quan.html" class="text-gray-800 hover:text-accent font-medium">Cảnh quan</a></li>
+            <li><a href="du-lich.html" class="text-gray-800 hover:text-accent font-medium">Du lịch</a></li>
+            <li><a href="#hoat-dong" class="text-gray-800 hover:text-accent font-medium">Hoạt động</a></li>
+            <li><a href="#dich-vu" class="text-gray-800 hover:text-accent font-medium">Dịch vụ</a></li>
+            <li><a href="#lien-he" class="text-gray-800 hover:text-accent font-medium">Liên hệ</a></li>
             </ul>
           </div>
           <div>
@@ -165,7 +975,7 @@
             <ul class="space-y-2">
               <li class="flex items-start">
                 <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
+                <span>123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</span>
               </li>
               <li class="flex items-start">
                 <i class="fas fa-phone mt-1 mr-2"></i>
@@ -173,15 +983,121 @@
               </li>
               <li class="flex items-start">
                 <i class="fas fa-envelope mt-1 mr-2"></i>
-                <span>info@honkhoai.vn</span>
+                <span>info@bieumau.vn</span>
               </li>
             </ul>
           </div>
         </div>
         <div class="border-t border-blue-800 mt-8 pt-8 text-center">
-          <p>&copy; 2023 Đảo Hòn Khoai. Tất cả quyền được bảo lưu.</p>
+          <p>&copy; 2023 Tất cả quyền được bảo lưu.</p>
         </div>
       </div>
     </footer>
+
+    <!-- Form 5 -->
+    <div id="form5" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
+      <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 5</h3>
+      <form class="space-y-6">
+        <div class="space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center">
+            <label for="ten5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
+            <input id="ten5" type="text" value="Nguyễn Anh Tuấn" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+          </div>
+          
+          <div class="flex flex-col md:flex-row md:items-center">
+            <label for="ns5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
+            <input id="ns5" type="date" value="2007-03-21" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+          </div>
+          
+          <div class="flex flex-col md:flex-row md:items-center">
+            <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
+            <div class="w-full md:w-2/3 flex items-center space-x-4">
+              <div class="flex items-center">
+                <input id="gt5-nam" type="radio" name="gt5" checked class="mr-2 text-primary focus:ring-primary">
+                <label for="gt5-nam">Nam</label>
+              </div>
+              <div class="flex items-center">
+                <input id="gt5-nu" type="radio" name="gt5" class="mr-2 text-primary focus:ring-primary">
+                <label for="gt5-nu">Nữ</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row md:items-center">
+            <label for="color5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
+            <input type="text" id="color5" value="Xanh Dương" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+          </div>
+          
+          <div class="flex flex-col md:flex-row">
+            <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
+            <div class="w-full md:w-2/3">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-1">Bóng đá</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-2">Cầu lông</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-3">Bóng chuyền</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-4">Ca hát</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-5">Nhảy – Múa</label>
+                  </div>
+                  <div class="flex items-center">
+                    <input type="checkbox" id="sport5-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
+                    <label for="sport5-6">Khác</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <space-y-4>
+            <div class="flex flex-col md:flex-row md:items-center">
+              <label for="subject5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+              <input type="text" id="subject5" value="Địa lý" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+            </div>
+            
+            <div class="flex flex-col md:flex-row md:items-start">
+              <label for="pcs5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
+              <textarea id="pcs5" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
+            </div>
+          </space-y-4>
+          
+          <div class="flex justify-start pt-4">
+            <button type="button" onclick="showForm(4)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
+              <i class="fas fa-arrow-left mr-2"></i> Quay lại
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function showForm(number) {
+        // Ẩn tất cả các form
+        document.getElementById("form1").classList.add("hidden");
+        document.getElementById("form2").classList.add("hidden");
+        document.getElementById("form3").classList.add("hidden");
+        document.getElementById("form4").classList.add("hidden");
+        document.getElementById("form5").classList.add("hidden");
+        
+        // Hiển thị form được chọn
+        document.getElementById("form" + number).classList.remove("hidden");
+        
+        // Cuộn lên đầu trang
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    </script>
 </body>
 </html>

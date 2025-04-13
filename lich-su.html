@@ -21,6 +21,82 @@
       }
     </script>
     <style>
+      .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .mobile-menu.active {
+        transform: translateX(0);
+      }
+
+      .mobile-nav-link {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+      }
+
+      .mobile-nav-link:hover {
+        background-color: #f3f4f6;
+        color: #f59e0b;
+        transform: translateX(5px);
+      }
+
+      #close-menu {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      #close-menu:hover {
+        transform: rotate(90deg);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 45;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .btn-hover {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+    <style>
+      .home-button {
+        transition: all 0.3s ease;
+        transform: translateY(0);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .home-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
       .home-button {
         position: fixed;
         bottom: 20px;
@@ -48,7 +124,7 @@
         height: 0;
         overflow: hidden;
         opacity: 0;
-        background-color: #e0f2fe;
+        background-color: rgb(31, 41, 55);
         padding: 0 1rem;
         transform: translateY(-10px);
         transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -154,6 +230,51 @@
 <body class="bg-gray-50 font-sans">
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
+          <h1 class="text-2xl font-bold text-primary">Đảo Hòn Khoai</h1>
+        </div>
+        <nav class="hidden md:block">
+          <ul class="flex space-x-8">
+            <li><a href="index.html" class="text-gray-800 hover:text-accent font-medium">Trang chủ</a></li>
+            <li><a href="canh-quan.html" class="text-gray-800 hover:text-accent font-medium">Cảnh quan</a></li>
+            <li><a href="du-lich.html" class="text-gray-800 hover:text-accent font-medium">Du lịch</a></li>
+            <li><a href="lich-su.html" class="text-gray-800 hover:text-accent font-medium">Lịch sử</a></li>
+            <li><a href="form.html" class="text-gray-800 hover:text-accent font-medium">Tâm sự</a></li>
+          </ul>
+        </nav>
+        <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 md:hidden">
+          <div class="p-4 border-b flex justify-between items-center">
+            <h2 class="text-xl font-bold text-primary">Menu</h2>
+            <button id="close-menu" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times text-xl"></i>
+            </button>
+          </div>
+          <nav class="p-4">
+            <a href="index.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-home mr-2"></i>Trang chủ
+            </a>
+            <a href="canh-quan.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-mountain mr-2"></i>Cảnh quan
+            </a>
+            <a href="lich-su.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-history mr-2"></i>Lịch sử
+            </a>
+            <a href="du-lich.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-plane mr-2"></i>Du lịch
+            </a>
+            <a href="form.html" class="mobile-nav-link block p-3 text-gray-700 hover:text-accent">
+              <i class="fas fa-edit mr-2"></i>Tâm sự
+            </a>
+          </nav>
+        </div>
+      </div>
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center">
           <i class="fas fa-umbrella-beach text-3xl text-accent mr-2"></i>
@@ -353,6 +474,38 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        function openMenu() {
+          mobileMenu.classList.add('active');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          document.querySelector('main').style.filter = 'blur(5px)';
+          document.querySelector('main').style.transition = 'filter 0.3s ease';
+        }
+
+        function closeMenuHandler() {
+          mobileMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+          document.querySelector('main').style.filter = 'none';
+        }
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeMenuHandler);
+        overlay.addEventListener('click', closeMenuHandler);
+
+        // Close menu when clicking on mobile nav links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', closeMenuHandler);
+        });
         const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
         
         dropdownTriggers.forEach(trigger => {
@@ -503,21 +656,8 @@
             </ul>
           </div>
           <div>
-            <h3 class="text-xl font-bold mb-4">Thông tin liên hệ</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-                <span>Trung tâm Du lịch Đất Mũi, huyện Ngọc Hiển, tỉnh Cà Mau</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-phone mt-1 mr-2"></i>
-                <span>0xxx.xxx.xxx</span>
-              </li>
-              <li class="flex items-start">
-                <i class="fas fa-envelope mt-1 mr-2"></i>
-                <span>info@honkhoai.vn</span>
-              </li>
-            </ul>
+            <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
+            <p class="text-gray-300 mb-4">Cập nhật tin tức mới nhất về Hòn Khoai</p>
           </div>
         </div>
         <div class="border-t border-blue-800 mt-8 pt-8 text-center">
