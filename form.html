@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Biểu mẫu">
-    <title>Biểu mẫu  (3 trang)</title>
+    <meta name="description" content="Biểu mẫu giống nhau (3 trang)">
+    <title>Biểu mẫu giống nhau (3 trang)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -88,22 +88,18 @@
 }
 
 body {
-      margin: 0 auto;
-      max-width: 1920px;
-    }
-
-    .py-20 {
-      background-image: url('images\baibien.gif');
+     
       background-size: cover;
       background-position: center;
+      background-position-x: center;
+      background-position-y: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      position: relative;
     }
 
-    .py-20::before {
+    body::before {
       content: '';
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -367,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex items-center">
           <i class="fas fa-file-alt text-3xl text-accent mr-2"></i>
-          <h1 class="text-2xl font-bold text-primary">Biểu mẫu </h1>
+          <h1 class="text-2xl font-bold text-primary">Biểu mẫu giống nhau</h1>
         </div>
         <nav class="hidden md:block">
           <ul class="flex space-x-8">
@@ -389,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="py-20 bg-gray-50">
       <div class="container mx-auto px-4 max-w-4xl">
         <div class="text-center mb-16">
-          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">BIỂU MẪU </h1>
+          <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">BIỂU MẪU GIỐNG NHAU</h1>
           <div class="w-20 h-1 bg-accent mx-auto mb-6"></div>
           <p class="text-gray-600 max-w-3xl mx-auto text-lg">
             Di chuyển qua các trang để điền thông tin vào biểu mẫu
@@ -465,6 +461,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row md:items-center">
+                <label for="subject5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
+                <input type="text" id="subject1" value="Tiếng Anh" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row md:items-start">
@@ -671,7 +672,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div id="form4" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
           <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 4</h3>
           <div class="circle-frame">
-            <img src="images/placeholder.txt" alt="Avatar của Nguyễn Thị Thùy Dương">
+            <img src="images\chauhoang.jpg" alt="Avatar của Nguyễn Thị Thùy Dương">
           </div>
           <form class="space-y-6">
             <div class="space-y-4">
@@ -834,12 +835,12 @@ document.addEventListener('DOMContentLoaded', function() {
               
               <div class="flex flex-col md:flex-row md:items-center">
                 <label for="subject5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
-                <input type="text" id="subject5" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
+                <input type="text" id="subject5" value="Địa lý" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
               </div>
               
               <div class="flex flex-col md:flex-row md:items-start">
                 <label for="pcs5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
-                <textarea id="pcs5" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
+                <textarea id="pcs5" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">Chấp nhận là cách sống</textarea>
               </div>
               
               <div class="flex justify-start pt-4">
@@ -944,13 +945,72 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
     </section>
+
+    <!-- HTML cho phần tiêu đề và video -->
+<div class="video-section">
+  <h2 class="section-title">Video nhảy của nhóm chúng em</h2>
+  <div class="video-container">
+    <video id="dance-video" autoplay muted playsinline loop controls>
+      <source src="images\3375437131695259204.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+  </div>
+</div>
+
+<!-- CSS cho styling -->
+<style>
+  .video-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  padding: 0 15px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.section-title {
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  display: inline-block;
+  /* Loại bỏ left và transform để tránh xung đột */
+}
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 50;
+    bottom: 0;
+    width: 100%; /* Đảm bảo gạch chân bằng chiều rộng của tiêu đề */
+    height: 3px;
+    background-color: #ffcc00; /* Màu vàng cho gạch chân */
+  }
+  
+  .video-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #dance-video {
+    width: 100%;
+    height: auto;
+  }
+</style>
   
     <!-- Footer -->
     <footer class="bg-primary text-white py-12">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 class="text-xl font-bold mb-4">Biểu mẫu </h3>
+            <h3 class="text-xl font-bold mb-4">Biểu mẫu giống nhau</h3>
             <p class="mb-4">Hệ thống quản lý biểu mẫu</p>
             <div class="flex space-x-4">
               <a href="#" class="text-white hover:text-accent text-xl"><i class="fab fa-facebook-f"></i></a>
@@ -989,99 +1049,11 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
         <div class="border-t border-blue-800 mt-8 pt-8 text-center">
-          <p>&copy; 2023 Tất cả quyền được bảo lưu.</p>
+          <p>&copy; 2023 Biểu mẫu giống nhau. Tất cả quyền được bảo lưu.</p>
         </div>
       </div>
     </footer>
 
-    <!-- Form 5 -->
-    <div id="form5" class="bg-white rounded-xl p-8 shadow-md mb-6 hidden">
-      <h3 class="text-2xl font-bold text-primary mb-6">Biểu mẫu 5</h3>
-      <form class="space-y-6">
-        <div class="space-y-4">
-          <div class="flex flex-col md:flex-row md:items-center">
-            <label for="ten5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Họ và tên thành viên:</label>
-            <input id="ten5" type="text" value="Nguyễn Anh Tuấn" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
-          </div>
-          
-          <div class="flex flex-col md:flex-row md:items-center">
-            <label for="ns5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Ngày sanh thần:</label>
-            <input id="ns5" type="date" value="2007-03-21" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
-          </div>
-          
-          <div class="flex flex-col md:flex-row md:items-center">
-            <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Giới tính:</label>
-            <div class="w-full md:w-2/3 flex items-center space-x-4">
-              <div class="flex items-center">
-                <input id="gt5-nam" type="radio" name="gt5" checked class="mr-2 text-primary focus:ring-primary">
-                <label for="gt5-nam">Nam</label>
-              </div>
-              <div class="flex items-center">
-                <input id="gt5-nu" type="radio" name="gt5" class="mr-2 text-primary focus:ring-primary">
-                <label for="gt5-nu">Nữ</label>
-              </div>
-            </div>
-          </div>
-          
-          <div class="flex flex-col md:flex-row md:items-center">
-            <label for="color5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Màu sắc yêu thích:</label>
-            <input type="text" id="color5" value="Xanh Dương" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
-          </div>
-          
-          <div class="flex flex-col md:flex-row">
-            <label class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn thể thao yêu thích:</label>
-            <div class="w-full md:w-2/3">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="space-y-2">
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-1" value="Bóng đá" class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-1">Bóng đá</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-2" value="Cầu lông" checked class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-2">Cầu lông</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-3" value="Bóng chuyền" class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-3">Bóng chuyền</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-4" value="Ca hát" checked class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-4">Ca hát</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-5" value="Nhảy - Múa" class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-5">Nhảy – Múa</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input type="checkbox" id="sport5-6" value="Khác" class="mr-2 text-primary focus:ring-primary">
-                    <label for="sport5-6">Khác</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <space-y-4>
-            <div class="flex flex-col md:flex-row md:items-center">
-              <label for="subject5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3">Môn học tự tin:</label>
-              <input type="text" id="subject5" value="Địa lý" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300">
-            </div>
-            
-            <div class="flex flex-col md:flex-row md:items-start">
-              <label for="pcs5" class="block text-gray-700 font-medium mb-2 md:mb-0 md:w-1/3 md:pt-2">Phương châm sống:</label>
-              <textarea id="pcs5" rows="4" class="w-full md:w-2/3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition duration-300"></textarea>
-            </div>
-          </space-y-4>
-          
-          <div class="flex justify-start pt-4">
-            <button type="button" onclick="showForm(4)" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center">
-              <i class="fas fa-arrow-left mr-2"></i> Quay lại
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
 
     <script>
       function showForm(number) {
